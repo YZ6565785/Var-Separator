@@ -47,10 +47,14 @@ input, textarea {
     background-color: #f7f7f7;
 }
 
-.convert-btn, .copy-btn, .add-btn {
+.convert-btn, .copy-btn, .add-btn, .delete-btn {
     width: 8em;
     margin: 1em 0 1em 1em;
     float: right;
+}
+.delete-btn {
+    /* float: left; */
+    margin: auto auto auto 1.6em;
 }
 
 .table {

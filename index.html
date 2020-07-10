@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <title>Var Separator</title>
-    <link rel="icon" href="favicon.gif" type="image/gif">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -20,7 +20,10 @@
         </section>
 
         <section id="main">
+            <div class="row">
+                <button class="btn btn-danger delete-btn" id="delete" type="button" name="delete">Delete</button>
 
+            </div>
             <div class="row">
                 <div class="col-lg-7">
 
@@ -38,6 +41,7 @@
                                 <button class="btn btn-primary convert-btn" id="convert-btn" type="button">
                                     Convert
                                 </button>
+                                <button class="btn btn-success copy-btn" id="copy-input" type="Copy" name="Copy">Copy Input</button>
                             </div>
 
                         </div>
@@ -50,7 +54,8 @@
                                 <textarea class="form-control outputText" id="outputText" rows="2" cols="80"></textarea>
                                 <div class="">
 
-                                    <button class="btn btn-success copy-btn" id="copy" type="Copy" name="Copy">Copy</button>
+                                    <button class="btn btn-success copy-btn" id="copy-code" type="Copy" name="Copy">Copy Code</button>
+                                    <button class="btn btn-success copy-btn" id="copy-string" type="Copy" name="Copy">Copy String</button>
                                 </div>
                             </div>
                         </div>
@@ -81,8 +86,8 @@
                                         <td><input class="form-control var-input" type="text" name="var-0" size=15></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="form-control word-input" type="text" name="word-0" size=15></td>
-                                        <td><input class="form-control var-input" type="text" name="var-0" size=15></td>
+                                        <td><input class="form-control word-input" type="text" name="word-1" size=15></td>
+                                        <td><input class="form-control var-input" type="text" name="var-1" size=15></td>
                                     </tr>
 
                                 </table>
@@ -108,60 +113,127 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        var rowIndex = $("table").length
+        var number = 0
+        var fName = "favicon-animation/frame_0" + number + "_delay-0.05s.gif"
+
+        setInterval(function() {
+            if (number == 11) {
+                number = 0
+            }
+
+            var fName = "favicon-animation/frame_0" + number + "_delay-0.05s.gif"
+            $("link[rel='icon']").remove();
+            $("link[rel='shortcut icon']").remove();
+            $("head").append('<link rel="icon" href="' + fName + '" type="image/gif">');
+            number++
+        }, 100);
+
+
+
+
+
+        var rowIndex = $("table tbody").children().length
         var words = [""]
         var names = [""]
         var inputText = ""
         var outputText = ""
         console.log(rowIndex)
-        $("#add-btn").click(function() {
-            for (var i = 0; i < 2; i++) {
-                var element = "<tr><td><input class = 'word-input' type='text' name='word-" + rowIndex + "' value='' size=15></td><td><input class = 'var-input' type='text' name='var-" + rowIndex + "' value='' size=15></td></tr>"
-                $("table").append(element)
-                rowIndex++
 
-                inputDetection()
-                $('html, body').scrollTop();
+        function appendNewInput() {
+            var element = "<tr><td><input class = 'form-control word-input' type='text' name='word-" + rowIndex + "' value='' size=15></td><td><input class = 'form-control var-input' type='text' name='var-" + rowIndex +
+                "' value='' size=15></td></tr>"
+            $("table").append(element)
+            rowIndex++
+
+            inputDetection()
+        }
+
+        function copyOutputText(element) {
+
+            if (element.attr("id") == "inputText") {
+                var dummy = $('<input>').val($("#inputText").val()).appendTo('body').select()
+                document.execCommand('copy')
+                $(dummy).remove();
+            } else {
+                var copyText = element
+                copyText.select()
+                document.execCommand("copy")
+
             }
+            $('.alert').show().toggleClass("show");
+            setTimeout(function() {
+                $('.alert').show().toggleClass("show")
+            }, 2000)
+        }
 
-        })
 
         function inputDetection() {
             $("input").on("input", function(event) {
-
                 var className = this.className
                 var ind = this.name.split("-")[1]
                 var text = $(this).val()
-                if (className == "word-input") {
+                if (className.includes("word-input")) {
                     words[ind] = text
                 } else {
                     names[ind] = text
+                    var wordInput = $(".word-input[name=word-" + ind + "]")
+                    console.log(wordInput.val(), wordInput.attr("placeholder"));
+                    if (wordInput.val() == "" && wordInput.attr("placeholder") != "") {
+                        wordInput.val(wordInput.attr("placeholder"))
+                    }
                 }
             })
         }
 
-        $("#convert-btn").on("click", function() {
-            inputText = $("#inputText").val()
-            inputText = inputText.replace("\"", "")
-            convert()
 
-            if (words.length == 1 && words[0] == "" && names[0] == "") {
-                console.log(words)
-                outputText = "\"" + inputText + "\""
-            }
-            $("#outputText").val(outputText)
-            $('#collapseExample').collapse("show")
+        $("#inputText").on("select", function(event) {
+            var selectedText = window.getSelection().toString()
+            $(".word-input").each(function() {
+                if ($(this).val() == selectedText) {
+                    return false;
+                }
+                if ($(this).val() == "") {
+                    $(this).attr("placeholder", selectedText)
 
+                    var inputName = $(this).attr("name")
+                    var inputIndex = inputName.split("-")[1]
+                    if (rowIndex - 1 == inputIndex) {
+                        appendNewInput()
+                    }
+                    words[inputIndex] = selectedText
+                    $(".var-input[name=var-" + inputIndex + "]").focus()
+
+                    return false;
+                }
+            })
         })
 
 
 
-        function convert() {
 
+
+        function convert() {
+            inputText = $("#inputText").val()
+            if (inputText[0] == "\"") {
+                inputText = inputText.substr(1)
+            }
+            if (inputText[inputText.length - 1] == "\"") {
+                inputText = inputText.substr(0, inputText.length - 1)
+            }
+            while (inputText.includes("\"")) {
+                inputText = inputText.replace("\"", "'")
+            }
             outputText = "\"" + inputText + "\""
+            // console.log("input text: "+inputText)
+            // console.log("words: "+words)
+            // console.log("names: "+words)
+            // console.log("output text: "+outputText)
+
+            // replace every word with a variable name in the inputText
             for (var i = 0; i < words.length; i++) {
                 outputText = outputText.replace(words[i], "\" + " + names[i] + " + \"")
             }
+
             if (outputText.includes("\"\" + ")) {
                 outputText = outputText.replace("\"\" + ", "")
             }
@@ -171,19 +243,53 @@
         }
 
         $(document).ready(function() {
-            $("#copy").on("click", function() {
-                var copyText = $("#outputText")
-                copyText.select()
-                document.execCommand("copy")
-                $('.alert').show().toggleClass("show");
-                setTimeout(function() {
-                    $('.alert').show().toggleClass("show")
 
-                }, 2000)
+            $(".btn").click(function() {
+                if ($(this).hasClass("copy-btn")) {
+                    if ($(this).attr("id") == "copy-input") {
+                        copyOutputText($("#inputText"))
+                    } else {
+                        copyOutputText($("#outputText"))
+                    }
+                } else if ($(this).hasClass("add-btn")) {
+                    appendNewInput()
+                    appendNewInput()
+
+                } else if ($(this).hasClass("delete-btn")) {
+                    $("input").each(function() {
+                        $(this).val("")
+                        $(this).attr("placeholder", "")
+                    })
+                    $("#inputText").val("")
+                    $("#outputText").val("")
+
+                } else if ($(this).hasClass("convert-btn")) {
+                    convert()
+
+                    // output the original file if no variable defined
+                    if (words.length == 1 && words[0] == "" && names[0] == "") {
+                        outputText = "\"" + inputText + "\""
+                    }
+                    $("#outputText").val(outputText)
+
+
+                    $('#collapseExample').collapse("show")
+                    copyOutputText($("#outputText"))
+
+                }
             })
-        })
 
-        inputDetection()
+            $(".copy-btn").hover(function() {
+                if ($(this).attr("id") == "copy-code") {
+                    $("#outputText").val("var msg = " + outputText)
+                } else if ($(this).attr("id") == "copy-string") {
+                    $("#outputText").val(outputText)
+
+                }
+            })
+            inputDetection()
+
+        })
     </script>
 </body>
 
