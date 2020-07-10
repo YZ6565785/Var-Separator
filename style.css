@@ -3,13 +3,15 @@ body {
     font-size: 1rem;
     text-align: center;
     background-color: #abc2e8;
+    background-color: #393e46;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     padding: 30px;
+    color: #e0dede;
 }
 
 h3 {
@@ -29,7 +31,6 @@ input, textarea {
     border: 1px black solid;
     background-color: #f7f7f7;
     font-family: courier;
-
 }
 
 /* classes */
@@ -67,17 +68,17 @@ input, textarea {
 
 /* ids */
 #var-heading {
-    color: blue;
+    color: #3f72af;
     margin-left: 60px;
 }
 
 #text-heading {
-    color: green;
+    color: #438a5e;
     margin: auto 60px;
 }
 
 #string-heading {
-    color: green;
+    color: #438a5e;
 }
 
 #main, #footer {
