@@ -1,0 +1,90 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #abc2e8;
+}
+
+h1 {
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    padding: 30px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 900;
+    padding: 10px 30px 10px 0;
+    /* float: left; */
+}
+
+section {
+    margin: 0;
+    padding: 10px;
+}
+
+input, textarea {
+    border: 1px black solid;
+    background-color: #f7f7f7;
+    font-family: courier;
+
+}
+
+/* classes */
+.container-fluid {
+    padding: 0;
+}
+
+.convertion {
+    text-align: right;
+}
+
+.card {
+    margin-bottom: 1em;
+    background-color: #f7f7f7;
+}
+
+.convert-btn, .copy-btn, .add-btn {
+    width: 8em;
+    margin: 1em 0 1em 1em;
+    float: right;
+}
+
+.table {
+    border-radius: 2%;
+    text-align: right;
+    background-color: #f7f7f7;
+}
+
+.add-btn {
+    width: auto;
+    display: block;
+    margin-top: 0;
+    float: right;
+}
+
+/* ids */
+#var-heading {
+    color: blue;
+    margin-left: 60px;
+}
+
+#text-heading {
+    color: green;
+    margin: auto 60px;
+}
+
+#string-heading {
+    color: green;
+}
+
+#main, #footer {
+    background-color: #eeeeee;
+    padding: 60px;
+}
+
+#convertion {
+    /* margin: 55px 0 0 0; */
+}

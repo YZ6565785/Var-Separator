@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Var Separator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <section id="title">
+            <h1>Convert <span id="text-heading">"Text"</span> to <span id="var-heading">var</span> ➕ <span id="string-heading">"String"</span>.</h1>
+        </section>
+
+        <section id="main">
+
+            <div class="row">
+                <div class="col-lg-7">
+
+
+                    <section id="convertion">
+
+                        <div class="card card-body">
+
+                            <h3>Input Text</h3>
+
+
+                            <textarea class="form-control" id="inputText" rows="2" cols="80"></textarea>
+                            <div class="">
+
+                                <button class="btn btn-primary convert-btn" id="convert-btn" type="button">
+                                    Convert
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <h3>Separated Code</h3>
+                                <textarea class="form-control outputText" id="outputText" rows="2" cols="80"></textarea>
+                                <div class="">
+
+                                    <button class="btn btn-success copy-btn" id="copy" type="Copy" name="Copy">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="alert alert-success fade" role="alert" data-dismiss="alert" alert="close" display="false">
+                        Copied!
+                    </div>
+
+
+                </div>
+                <div class="col-lg-5">
+
+                    <section id="config">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <h3>Varables</h3>
+
+                                <table class="table table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Word</td>
+                                            <th scope="col">Variable Name</td>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tr>
+                                        <td><input class="form-control word-input" type="text" name="word-0" size=15></td>
+                                        <td><input class="form-control var-input" type="text" name="var-0" size=15></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-control word-input" type="text" name="word-0" size=15></td>
+                                        <td><input class="form-control var-input" type="text" name="var-0" size=15></td>
+                                    </tr>
+
+                                </table>
+                                <button class="btn btn-secondary add-btn" id="add-btn" type="button" name="Add" href="#footer">Add</button>
+                            </div>
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+
+            </div>
+
+        </section>
+
+        <section id="footer">
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var rowIndex = $("table").length
+        var words = [""]
+        var names = [""]
+        var inputText = ""
+        var outputText = ""
+        console.log(rowIndex)
+        $("#add-btn").click(function() {
+            for (var i = 0; i < 2; i++) {
+                var element = "<tr><td><input class = 'word-input' type='text' name='word-" + rowIndex + "' value='' size=15></td><td><input class = 'var-input' type='text' name='var-" + rowIndex + "' value='' size=15></td></tr>"
+                $("table").append(element)
+                rowIndex++
+
+                inputDetection()
+                $('html, body').scrollTop();
+            }
+
+        })
+
+        function inputDetection() {
+            $("input").on("input", function(event) {
+
+                var className = this.className
+                var ind = this.name.split("-")[1]
+                var text = $(this).val()
+                if (className == "word-input") {
+                    words[ind] = text
+                } else {
+                    names[ind] = text
+                }
+            })
+        }
+
+        $("#convert-btn").on("click", function() {
+            inputText = $("#inputText").val()
+            inputText = inputText.replace("\"", "")
+            convert()
+
+            if (words.length == 1 && words[0] == "" && names[0] == "") {
+                console.log(words)
+                outputText = "\"" + inputText + "\""
+            }
+            $("#outputText").val(outputText)
+            $('#collapseExample').collapse("show")
+
+        })
+
+
+
+        function convert() {
+
+            outputText = "\"" + inputText + "\""
+            for (var i = 0; i < words.length; i++) {
+                outputText = outputText.replace(words[i], "\" + " + names[i] + " + \"")
+            }
+            if (outputText.includes("\"\" + ")) {
+                outputText = outputText.replace("\"\" + ", "")
+            }
+            if (outputText.includes(" + \"\"")) {
+                outputText = outputText.replace(" + \"\"", "")
+            }
+        }
+
+        $(document).ready(function() {
+            $("#copy").on("click", function() {
+                var copyText = $("#outputText")
+                copyText.select()
+                document.execCommand("copy")
+                $('.alert').show().toggleClass("show");
+                setTimeout(function() {
+                    $('.alert').show().toggleClass("show")
+
+                }, 2000)
+            })
+        })
+
+        inputDetection()
+    </script>
+</body>
+
+</html>
