@@ -10,7 +10,7 @@ h1 {
     font-size: 3rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    padding: 30px;
+    padding: 20px;
     color: #e0dede;
 }
 
@@ -38,6 +38,14 @@ input, textarea {
     padding: 0;
 }
 
+.intro {
+    color: #aaa;
+    margin: auto 100px;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
 .convertion {
     text-align: right;
 }
@@ -52,9 +60,16 @@ input, textarea {
     margin: 1em 0 1em 1em;
     float: right;
 }
+
 .delete-btn {
     /* float: left; */
     margin: auto auto auto 1.6em;
+}
+
+.instruction {
+    text-align: left;
+    font-size: 0.8rem;
+    color: #999;
 }
 
 .table {
