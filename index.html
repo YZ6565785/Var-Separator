@@ -20,98 +20,162 @@
             <p class="intro">Var-separator </p>
             <p class="intro">It helps programmers to add variables in a text easily,</p>
             <p class="intro">get ready-to-use Strings quickly.</p>
-
         </section>
 
-        <section id="main">
-            <div class="row">
-                <button class="btn btn-danger delete-btn" id="delete" type="button" name="delete">Delete</button>
-
-            </div>
-            <div class="row">
-                <div class="col-lg-7">
-
-
-                    <section id="convertion">
-
-                        <div class="card card-body">
-
-                            <h3>Input Text</h3>
-
-                            <ul class="instruction">
-                                <li>Double click letters to select and add as a variable.</li>
-                                <li>Click and Drag to select multiple letters in a single variable.</li>
-                            </ul>
-
-                            <textarea class="form-control" id="inputText" rows="2" cols="80"></textarea>
-                            <div class="">
-
-                                <button class="btn btn-primary convert-btn" id="convert-btn" type="button">
-                                    Convert
-                                </button>
-                                <button class="btn btn-success copy-btn" id="copy-input" type="Copy" name="Copy">Copy Input</button>
-                            </div>
-
-                        </div>
-                        <div class="alert alert-success fade" role="alert" data-dismiss="alert" alert="close" display="false">
-                            Copied!
-                        </div>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                                <h3>Separated Code</h3>
-                                <textarea class="form-control outputText" id="outputText" rows="2" cols="80"></textarea>
-                                <div class="">
-
-                                    <button class="btn btn-success copy-btn" id="copy-code" type="Copy" name="Copy">Copy Code</button>
-                                    <button class="btn btn-success copy-btn" id="copy-string" type="Copy" name="Copy">Copy String</button>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Var Separator</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Text Separator</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <!-- the var separator elements -->
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <section id="main">
+                    <div class="row">
+                        <button class="btn btn-danger delete-btn" id="delete" type="button" name="delete">Delete</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7">
+        
+                            <section id="convertion">
+        
+                                <div class="card card-body">
+        
+                                    <h3>Input Text</h3>
+        
+                                    <ul class="instruction">
+                                        <li>Double click letters to select and add as a variable.</li>
+                                        <li>Click and Drag to select multiple letters in a single variable.</li>
+                                    </ul>
+        
+                                    <textarea class="form-control" id="inputText" rows="2" cols="80"></textarea>
+                                    <div class="">
+        
+                                        <button class="btn btn-primary convert-btn" id="convert-btn" type="button">
+                                            Convert
+                                        </button>
+                                        <button class="btn btn-success copy-btn" id="copy-input" type="Copy" name="Copy">Copy Input</button>
+                                    </div>
+        
                                 </div>
-                            </div>
+                                <div class="alert alert-success fade" role="alert" data-dismiss="alert" alert="close" display="false">
+                                    Copied!
+                                </div>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <h3>Separated Code</h3>
+                                        <textarea class="form-control outputText" id="outputText" rows="2" cols="80"></textarea>
+                                        <div class="">
+        
+                                            <button class="btn btn-success copy-btn" id="copy-code" type="Copy" name="Copy">Copy Code</button>
+                                            <button class="btn btn-success copy-btn" id="copy-string" type="Copy" name="Copy">Copy String</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+        
                         </div>
-                    </section>
-
-
-
-                </div>
-                <div class="col-lg-5">
-
-                    <section id="config">
-                        <div class="card">
-
-                            <div class="card-body">
-                                <h3>Varables</h3>
-
-                                <table class="table table-bordered ">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Word</td>
-                                            <th scope="col">Variable Name</td>
-                                        </tr>
-
-                                    </thead>
-
-                                    <tr>
-                                        <td><input class="form-control word-input" type="text" name="word-0" size=15></td>
-                                        <td><input class="form-control var-input" type="text" name="var-0" size=15></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input class="form-control word-input" type="text" name="word-1" size=15></td>
-                                        <td><input class="form-control var-input" type="text" name="var-1" size=15></td>
-                                    </tr>
-
-                                </table>
-                                <button class="btn btn-secondary add-btn" id="add-btn" type="button" name="Add" href="#footer">Add</button>
-                            </div>
+                        <div class="col-lg-5">
+        
+                            <section id="config">
+                                <div class="card">
+        
+                                    <div class="card-body">
+                                        <h3>Varables</h3>
+        
+                                        <table class="table table-bordered ">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Word</td>
+                                                    <th scope="col">Variable Name</td>
+                                                </tr>
+        
+                                            </thead>
+        
+                                            <tr>
+                                                <td><input class="form-control word-input" type="text" name="word-0" size=15></td>
+                                                <td><input class="form-control var-input" type="text" name="var-0" size=15></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input class="form-control word-input" type="text" name="word-1" size=15></td>
+                                                <td><input class="form-control var-input" type="text" name="var-1" size=15></td>
+                                            </tr>
+        
+                                        </table>
+                                        <button class="btn btn-secondary add-btn" id="add-btn" type="button" name="Add" href="#footer">Add</button>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-
-                    </section>
-
-                </div>
-
-
-
+                    </div>
+        
+                </section>
             </div>
+            <!-- the text separator elements -->
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <section id="main">
+                    <div class="row">
+                        <button class="btn btn-danger delete-btn" id="delete" type="button" name="delete">Delete</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+        
+        
+                            <section id="convertion">
+        
+                                <div class="card card-body">
+        
+                                    <h3>Input Text</h3>
+        
+                                    <textarea class="form-control" id="inputText2" rows="2" cols="80"></textarea>
+                                    <table class="table table-bordered ">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Separator</td>
+                                                <th scope="col">Replacer</td>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td><input class="form-control sep-input" id="sep" type="text" name="sep" size=15></td>
+                                            <td><input class="form-control sep-input" id="rep" type="text" name="rep" size=15></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="sep-display"></td>
+                                            <td id="rep-display"></td>
+                                        </tr>
+                                    </table>
+                                    <div class="">
+        
+                                        <button class="btn btn-primary convert-btn" id="convert2-btn" type="button">
+                                            Convert
+                                        </button>
+                                        <button class="btn btn-success copy-btn" id="copy2-input" type="Copy" name="Copy">Copy Input</button>
+                                    </div>
+        
+                                </div>
+                                <div class="alert alert-success fade" role="alert" data-dismiss="alert" alert="close" display="false">
+                                    Copied!
+                                </div>
+                                <div class="show" id="collapseExample2">
+                                    <div class="card card-body">
+                                        <h3>Separated Text</h3>
+                                        <textarea class="form-control outputText" id="outputText2" rows="2" cols="80"></textarea>
+                                        <div class="">
+                                            <button class="btn btn-success copy-btn" id="copy-text" type="Copy" name="Copy">Copy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
 
-        </section>
+        
 
         <section id="footer">
             Made by @ Victor Zhang 2020
@@ -136,15 +200,16 @@
             number++
         }, 100);
 
-
-
-
-
         var rowIndex = $("table tbody").children().length
         var words = [""]
         var names = [""]
         var inputText = ""
         var outputText = ""
+        // for text separator
+        var sep = ""
+        var rep = ""
+        var inputText2 = ""
+        var outputText2 = ""
         console.log(rowIndex)
 
         function appendNewInput() {
@@ -174,7 +239,6 @@
             }, 2000)
         }
 
-
         function inputDetection() {
             $("input").on("input", function(event) {
                 var className = this.className
@@ -182,7 +246,12 @@
                 var text = $(this).val()
                 if (className.includes("word-input")) {
                     words[ind] = text
-                } else {
+                } else if (className.includes("sep-input")){
+                    sep = $("#sep").val()
+                    rep = $("#rep").val()
+                    $("#sep-display").text("Separator=\""+sep+"\"")
+                    $("#rep-display").text("Replacer=\""+rep+"\"")
+                }else {
                     names[ind] = text
                     var wordInput = $(".word-input[name=word-" + ind + "]")
                     console.log(wordInput.val(), wordInput.attr("placeholder"));
@@ -192,7 +261,6 @@
                 }
             })
         }
-
 
         $("#inputText").on("select", function(event) {
             var selectedText = window.getSelection().toString()
@@ -215,10 +283,6 @@
                 }
             })
         })
-
-
-
-
 
         function convert() {
             inputText = $("#inputText").val()
@@ -250,19 +314,25 @@
             }
         }
 
+        function convertText() {
+            inputText2 = $("#inputText2").val()
+            outputText2 = inputText2.replaceAll(sep,rep)
+            return outputText2
+        }
+
         $(document).ready(function() {
 
             $(".btn").click(function() {
-                if ($(this).hasClass("copy-btn")) {
-                    if ($(this).attr("id") == "copy-input") {
-                        copyOutputText($("#inputText"))
-                    } else {
-                        copyOutputText($("#outputText"))
-                    }
-                } else if ($(this).hasClass("add-btn")) {
+                // ################################################
+                // buttons for var separator
+                // ################################################
+                if ($(this).attr("id") == "copy-input") {
+                    copyOutputText($("#inputText"))
+                } else if ($(this).attr("id") == "copy-code" || $(this).attr("id") == "copy-string") {
+                    copyOutputText($("#outputText"))
+                }else if ($(this).hasClass("add-btn")) {
                     appendNewInput()
                     appendNewInput()
-
                 } else if ($(this).hasClass("delete-btn")) {
                     $("input").each(function() {
                         $(this).val("")
@@ -270,8 +340,10 @@
                     })
                     $("#inputText").val("")
                     $("#outputText").val("")
+                    $("#inputText2").val("")
+                    $("#outputText2").val("")
 
-                } else if ($(this).hasClass("convert-btn")) {
+                } else if ($(this).attr("id")=="convert-btn") {
                     convert()
 
                     // output the original file if no variable defined
@@ -279,12 +351,27 @@
                         outputText = "\"" + inputText + "\""
                     }
                     $("#outputText").val(outputText)
-
-
                     $('#collapseExample').collapse("show")
                     copyOutputText($("#outputText"))
-
                 }
+                // ################################################
+                // buttons for text separator
+                // ################################################
+                else if ($(this).attr("id")=="convert2-btn") {
+                    
+                    // $('#collapseExample2').collapse("show")
+                    out = convertText()
+                    $("#outputText2").val(out)
+                    $("#outputText2").select()
+                    document.execCommand('copy')
+                    copyOutputText($("#outputText2"))
+                } else if ($(this).attr("id") == "copy2-input") {
+                    copyOutputText($("#inputText2"))
+                }else if ($(this).attr("id") == "copy-text") {
+                    copyOutputText($("#outputText2"))
+                }
+                
+
             })
 
             $(".copy-btn").hover(function() {
